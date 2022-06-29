@@ -1,0 +1,112 @@
+#Playlist
+{
+    z-index: 1;
+    position: absolute;
+    background-color: palevioletred;
+    height: 100vh;
+    width: 300px;
+    resize: horizontal;
+    overflow: auto;
+    border-right: 4px solid blueviolet;
+}
+
+#AlbumCover
+{
+    z-index: 0;
+    position: absolute;
+    width: 100vmax;
+    height: 600px;
+    background-color: palegoldenrod;
+}
+
+#Controls
+{
+    z-index: 0;
+    position: absolute;
+    width: 100vmax;
+    height: 100px;
+    background-color: red;
+    bottom: calc(100% - 500px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Recommendations
+{
+    z-index: 0;
+    background-color: lightgray;
+    position: absolute;
+    bottom: 0px;
+    width: 100vmax;
+    height: calc(100% - 500px);
+    
+}
+
+.play-btn
+{       
+    position: relative;
+    border: 0 solid white;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+}
+
+.play-btn::before
+{
+    content: "\f04b";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 3em;
+    display: grid;
+    place-items: center;
+
+    animation: transition 1000ms ;
+}
+
+.play-btn::after
+{
+    content: "";
+    border-radius: 50%;
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: absolute;
+} 
+
+.play-btn::after
+{
+    content: "\f28b";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 3em;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+} 
+
+.play-btn:active::after
+{
+    animation: transition 300ms 1;
+    
+}
+
+@keyframes transition {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+#root
+{
+    display: flex;
+    margin: 0;
+    justify-content: start;
+}
+
