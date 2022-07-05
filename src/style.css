@@ -1,22 +1,32 @@
+
+
+
 #Playlist
 {
     z-index: 1;
     position: absolute;
-    background-color: palevioletred;
+    background-color: #F9F2ED;
     height: 100vh;
     width: 300px;
     resize: horizontal;
     overflow: auto;
     border-right: 4px solid blueviolet;
+
+    margin: none;
+    padding: none;
 }
+
 
 #AlbumCover
 {
     z-index: 0;
     position: absolute;
     width: 100vmax;
-    height: 600px;
-    background-color: palegoldenrod;
+    height: 900px;
+    background-color: #3AB0FF;
+    margin: none;
+    padding: none;
+    
 }
 
 #Controls
@@ -25,10 +35,11 @@
     position: absolute;
     width: 100vmax;
     height: 100px;
-    background-color: red;
-    bottom: calc(100% - 500px);
+    background-color: #F9F9F9;
+    bottom: calc(100% - 700px);
 
     display: flex;
+    padding-left: 150px;
     justify-content: center;
     align-items: center;
 }
@@ -36,77 +47,147 @@
 #Recommendations
 {
     z-index: 0;
-    background-color: lightgray;
+    background-color: #FFB562;
     position: absolute;
     bottom: 0px;
     width: 100vmax;
-    height: calc(100% - 500px);
+    height: calc(100% - 700px);
+    margin: none;
+    padding: none;
     
 }
 
-.play-btn
-{       
+
+  
+.button {
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    outline: none;
+    background: #f64747;
+    border: 0;
     position: relative;
-    border: 0 solid white;
-    width: 5em;
-    height: 5em;
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-.play-btn::before
-{
-    content: "\f04b";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 3em;
-    display: grid;
-    place-items: center;
-
-    animation: transition 1000ms ;
-}
-
-.play-btn::after
-{
+.button::before {
     content: "";
-    border-radius: 50%;
-    content: "";
-    bottom: 0;
+    position: absolute;
+    z-index: 110;
+    top: 0;
     left: 0;
     right: 0;
-    top: 0;
-    position: absolute;
-} 
-
-.play-btn::after
-{
-    content: "\f28b";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 3em;
-    display: grid;
-    place-items: center;
-    z-index: 2;
-} 
-
-.play-btn:active::after
-{
-    animation: transition 300ms 1;
-    
+    bottom: 0;
+    border-radius: 50%;
+    background: #1f3a93;
+    transform: scale(0);
+    transform-origin: 83% 86%;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
 }
 
-@keyframes transition {
-    0% {
-        transform: scale(1);
+.button.active::before {
+    transition-timing-function: ease;
+    transform: scale(1);
+}
+
+.button .play {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    margin-left: 15px;
+    z-index: 100;
+    clip-path: polygon(0 0, 80% 48%, 0 100%, 0% 100%);
+    transition: clip-path 0.5s ease;
+    transition-delay: 0.4s;
+}
+
+.button .play.active {
+    transition: clip-path 0.1s;
+    width: 60px;
+    height: 40px;
+    clip-path: polygon(0 0, 27% 0, 27% 100%, 0% 100%);
+}
+
+.small-box {
+    width: 18px;
+    height: 15px;
+    background: #fff;
+    position: absolute;
+    left: 65px;
+    z-index: 100;
+    bottom: 59px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.small-box.pauseToPlay {
+    animation: pauseToPlay 0.4s ease alternate-reverse;
+}
+
+@keyframes pauseToPlay {
+    10% {
+        transform: rotate(90deg);
+        left: 45px;
+    }
+    20%,
+    40% {
+        transform: rotate(180deg);
+        left: 45px;
+    }
+    50% {
+        left: 45px;
+        height: 40px;
+        bottom: 20px;
+        transform: rotate(180deg);
     }
     100% {
-        transform: scale(0);
-    }
+        left: 45px;
+        height: 40px;
+        bottom: 20px;
+        transform: rotate(180deg);
+}
 }
 
-#root
-{
-    display: flex;
-    margin: 0;
-    justify-content: start;
+.small-box.active {
+    opacity: 1;
+    transition: opacity 1s;
+    animation: move 0.8s cubic-bezier(0.52, 1.64, 0.37, 0.66) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes move {
+    10% {
+        transform: rotate(90deg);
+        left: 45px;
+        width: 15px;
+    }
+    20%,
+    40% {
+        transform: rotate(180deg);
+        left: 45px;
+        width: 15px;
+    }
+    50% {
+        left: 45px;
+        height: 40px;
+        bottom: 20px;
+        width: 16px;
+        transform: rotate(180deg);
+    }
+    100% {
+        left: 45px;
+        height: 40px;
+        bottom: 20px;
+        width: 16px;
+        transform: rotate(180deg);
+    }
 }
 

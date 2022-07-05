@@ -1,52 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
-import "./css/all.css"
+import "./css/all.css";
+import "./BScss/bootstrap.min.css";
+import Login from "./Login";
+import Dashboard from "./Dashboard";
 
-function PlaylistSection()
-{
-    return (
-        <div id = "Playlist">
-        </div>
-    )
-}
+const code = new URLSearchParams(window.location.search).get("code");
 
-function Cover()
-{
-    return (
-        <div id="AlbumCover">
-        </div>
-    )
-}
 
-function Recommendations()
-{
-    return (
-        <div id="Recommendations">
-
-        </div>
-    )
-}
-
-function Controls()
-{
-    return (
-        <div id="Controls">
-            <button class="play-btn" ></button>
-        </div>
-    )
-}
 
 function App()
 {
-    return (
-        <div>
-            <PlaylistSection />
-            <Cover />
-            <Controls />
-            <Recommendations />
-        </div>
-    )
+    return code ? <Dashboard code={code} /> : <Login />
 }
+
+
 
 ReactDOM.render(<App />, document.querySelector("#root"));
